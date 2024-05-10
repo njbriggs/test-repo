@@ -1,0 +1,53 @@
+{
+  "name": "macros_copy",
+  "appVersion": "f4f49be4-0f26-11ef-8925-829027d8fca6",
+  "description": "Data Pipeline Application",
+  "change": {
+    "author": "cdap",
+    "creationTimeMillis": 1715384546469,
+    "latest": true
+  },
+  "configuration": "{\"resources\":{\"memoryMB\":2048.0,\"virtualCores\":1.0},\"driverResources\":{\"memoryMB\":2048.0,\"virtualCores\":1.0},\"connections\":[{\"from\":\"GCSFile\",\"to\":\"Wrangler\"},{\"from\":\"Wrangler\",\"to\":\"Trash\"}],\"postActions\":[],\"properties\":{},\"processTimingEnabled\":true,\"stageLoggingEnabled\":true,\"stages\":[{\"name\":\"GCSFile\",\"plugin\":{\"name\":\"GCSFile\",\"type\":\"batchsource\",\"label\":\"GCSFile\",\"artifact\":{\"name\":\"google-cloud\",\"version\":\"0.22.2\",\"scope\":\"SYSTEM\"},\"properties\":{\"path\":\"${secure(secure-key-1)}\",\"fileEncoding\":\"UTF-8\",\"useConnection\":\"true\",\"format\":\"csv\",\"enableQuotedValues\":\"true\",\"connection\":\"${conn(Cloud Storage Default)}\",\"skipHeader\":\"true\",\"referenceName\":\"njbriggs-test-cdf-input.Divvy_Trips_2013.csv\",\"schema\":\"{\\\"type\\\":\\\"record\\\",\\\"name\\\":\\\"text\\\",\\\"fields\\\":[{\\\"name\\\":\\\"trip_id\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"starttime\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"stoptime\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"bikeid\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"tripduration\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"from_station_id\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"from_station_name\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"to_station_id\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"to_station_name\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"usertype\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"gender\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"birthday\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]}]}\",\"sampleSize\":\"1000\",\"filenameOnly\":\"false\",\"recursive\":\"false\",\"ignoreNonExistingFolders\":\"false\",\"encrypted\":\"false\"}},\"outputSchema\":[{\"name\":\"etlSchemaBody\",\"schema\":\"{\\\"type\\\":\\\"record\\\",\\\"name\\\":\\\"text\\\",\\\"fields\\\":[{\\\"name\\\":\\\"trip_id\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"starttime\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"stoptime\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"bikeid\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"tripduration\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"from_station_id\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"from_station_name\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"to_station_id\\\",\\\"type\\\":\\\"int\\\"},{\\\"name\\\":\\\"to_station_name\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"usertype\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"gender\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"birthday\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]}]}\"}],\"id\":\"GCSFile\"},{\"name\":\"Wrangler\",\"plugin\":{\"name\":\"Wrangler\",\"type\":\"transform\",\"label\":\"Wrangler\",\"artifact\":{\"name\":\"wrangler-transform\",\"version\":\"4.9.2\",\"scope\":\"SYSTEM\"},\"properties\":{\"field\":\"*\",\"precondition\":\"false\",\"workspaceId\":\"5847060b-825a-47b8-ac4d-8e5826051433\",\"schema\":\"{\\\"type\\\":\\\"record\\\",\\\"name\\\":\\\"record\\\",\\\"fields\\\":[{\\\"name\\\":\\\"trip_id\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"starttime\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"stoptime\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"bikeid\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"tripduration\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"from_station_id\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"from_station_name\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"to_station_id\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"to_station_name\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"usertype\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]}]}\"}},\"outputSchema\":\"{\\\"type\\\":\\\"record\\\",\\\"name\\\":\\\"record\\\",\\\"fields\\\":[{\\\"name\\\":\\\"trip_id\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"starttime\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"stoptime\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"bikeid\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"tripduration\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"from_station_id\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"from_station_name\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"to_station_id\\\",\\\"type\\\":[\\\"int\\\",\\\"null\\\"]},{\\\"name\\\":\\\"to_station_name\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]},{\\\"name\\\":\\\"usertype\\\",\\\"type\\\":[\\\"string\\\",\\\"null\\\"]}]}\",\"id\":\"Wrangler\"},{\"name\":\"Trash\",\"plugin\":{\"name\":\"Trash\",\"type\":\"batchsink\",\"label\":\"Trash\",\"artifact\":{\"name\":\"trash-plugin\",\"version\":\"1.2.0\",\"scope\":\"USER\"},\"properties\":{\"referenceName\":\"Trash\"}},\"id\":\"Trash\"}],\"schedule\":\"0 1 */1 * *\",\"engine\":\"spark\",\"numOfRecordsPreview\":100.0,\"rangeRecordsPreview\":{\"min\":1.0,\"max\":\"5000\"},\"description\":\"Data Pipeline Application\",\"maxConcurrentRuns\":1.0}",
+  "datasets": [],
+  "programs": [
+    {
+      "type": "Spark",
+      "app": "macros_copy",
+      "name": "phase-1",
+      "description": "Sources \u0027GCSFile\u0027 to sinks \u0027Trash\u0027."
+    },
+    {
+      "type": "Workflow",
+      "app": "macros_copy",
+      "name": "DataPipelineWorkflow",
+      "description": "Data Pipeline Workflow"
+    }
+  ],
+  "plugins": [
+    {
+      "id": "GCSFile",
+      "name": "GCSFile",
+      "type": "batchsource"
+    },
+    {
+      "id": "GCSFile:csv",
+      "name": "csv",
+      "type": "validatingInputFormat"
+    },
+    {
+      "id": "Wrangler",
+      "name": "Wrangler",
+      "type": "transform"
+    },
+    {
+      "id": "Trash",
+      "name": "Trash",
+      "type": "batchsink"
+    }
+  ],
+  "artifact": {
+    "name": "cdap-data-pipeline",
+    "version": "6.9.2",
+    "scope": "SYSTEM"
+  }
+}
